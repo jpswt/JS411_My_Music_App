@@ -1,25 +1,43 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import NavBar from './components/NavBar';
+import Login from './components/Login';
+import Dashboard from './components/Dashboard';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const [loggedIn, setLoggedIn] = useState(false);
+	const [state, setState] = useState({ userName: '', password: '' });
+
+	const handleChange = (e) => {
+		const value = e.target.value;
+		setState({ ...state, [e.target.name]: value });
+	};
+
+	const handleLogin = (e) => {
+		setLoggedIn(!loggedIn);
+	};
+
+	const handleLogout = (e) => {
+		setLoggedIn(false);
+		setState({ userName: '', password: '' });
+	};
+
+	return loggedIn ? (
+		<div>
+			<NavBar loggedIn={loggedIn} handleLogout={handleLogout} />
+			<Dashboard
+				userName={state.userName}
+				password={state.password}
+				loggedIn={loggedIn}
+				handleLogout={handleLogout}
+			/>
+		</div>
+	) : (
+		<div className="App">
+			<NavBar />
+			<Login handleLogin={handleLogin} handleChange={handleChange} />
+		</div>
+	);
 }
 
 export default App;

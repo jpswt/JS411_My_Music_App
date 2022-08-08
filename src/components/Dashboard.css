@@ -1,0 +1,31 @@
+h1 {
+	text-align: left;
+	margin-bottom: 3rem;
+	color: gray;
+}
+
+h2 {
+	text-align: left;
+	margin-top: 3rem;
+}
+
+section {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 4rem;
+}
+
+.main {
+	width: 65%;
+	margin: 0 auto;
+}
+
+ol {
+	text-align: left;
+}
+
+li {
+	font-size: 1.2rem;
+	color: red;
+}
